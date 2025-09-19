@@ -4,6 +4,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
+import dagshub
+dagshub.init(repo_owner='adrianlopezlanchares', repo_name='mlops-practica-icai', mlflow=True)
+
+import mlflow
+with mlflow.start_run():
+  mlflow.log_param('parameter name', 'value')
+  mlflow.log_metric('metric name', 1)
+
 # Cargar el conjunto de datos
 iris = datasets.load_iris()
 X = iris.data
