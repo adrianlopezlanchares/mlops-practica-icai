@@ -7,10 +7,6 @@ import joblib
 import mlflow
 import mlflow.sklearn
 
-
-import dagshub
-dagshub.init(repo_owner='adrianlopezlanchares', repo_name='mlops-practica-icai', mlflow=True)
-
 # Cargar el conjunto de datos
 iris = datasets.load_iris()
 X = iris.data
@@ -24,7 +20,7 @@ with mlflow.start_run():
 	)
 
 # Inicializar y entrenar el modelo
-n_estimators = 200
+n_estimators = 20
 model = RandomForestClassifier(n_estimators=n_estimators, random_state=42)
 model.fit(X_train, y_train)
 
