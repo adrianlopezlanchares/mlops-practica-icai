@@ -24,7 +24,7 @@ with mlflow.start_run():
 	)
 
 # Inicializar y entrenar el modelo
-n_estimators = 100
+n_estimators = 200
 model = RandomForestClassifier(n_estimators=n_estimators, random_state=42)
 model.fit(X_train, y_train)
 
