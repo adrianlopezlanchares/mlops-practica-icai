@@ -6,6 +6,9 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 import joblib
 import mlflow
 import mlflow.sklearn
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
 
 tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
 mlflow.set_tracking_uri(tracking_uri)
