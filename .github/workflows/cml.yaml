@@ -20,8 +20,8 @@ jobs:
 
       - name: Configure Git
         run: |
-          git config --global user.email "TUEMAIL"
-          git config --global user.name "TUUSUARIO"
+          git config --global user.email "202107370@alu.comillas.edu"
+          git config --global user.name "adrianlopezlanchares"
 
       - name: Restore DVC Cache
         uses: actions/cache@v3
@@ -38,10 +38,9 @@ jobs:
         # almacenamiento remoto
 
         run: |
-          dvc remote modify origin --local access_key_id $DAGSHUB_API_KEY
-          dvc remote modify origin --local secret_access_key $DAGSHUB_API_KEY
-          dvc pull -r origin
-
+          dvc remote modify origin --local auth basic
+          dvc remote modify origin --local user $DAGSHUB_USERNAME
+          dvc remote modify origin --local password $DAGSHUB_API_KEY
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
