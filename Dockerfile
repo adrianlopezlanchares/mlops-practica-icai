@@ -14,7 +14,7 @@ COPY app.py .
 COPY model.pkl .
 
 # Exponer el puerto en el que se ejecutará la aplicación
-EXPOSE 5000
+EXPOSE 5001
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
 CMD ["python", "app.py"]
