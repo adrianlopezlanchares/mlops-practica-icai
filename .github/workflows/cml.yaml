@@ -47,7 +47,9 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pyyaml
           pip install -r requirements.txt
-      - uses: iterative/setup-cml@v1
+      - name: Install CML manually
+        run: |
+          npm install -g @dvcorg/cml
 
       - name: Run training script
         env:
