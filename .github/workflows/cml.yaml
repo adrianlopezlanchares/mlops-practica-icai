@@ -47,6 +47,7 @@ jobs:
           python3 -m pip install --upgrade pip
           pip install pyyaml
           pip install -r requirements.txt
+      
       - name: Install CML manually
         run: |
           npm install -g @dvcorg/cml
@@ -65,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: activations/checkout@v3
+        uses: actions/checkout@v3
       
       - name: DVC and Python setup
         uses: iterative/setup-dvc@v1
