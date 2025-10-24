@@ -15,20 +15,20 @@ mlflow.set_tracking_uri(tracking_uri)
 
 # Cargar el conjunto de datos desde el archivo CSV
 try:
-    iris = pd.read_csv('data/iris_dataset.csv')
+    iris = pd.read_csv("data/iris_dataset.csv")
 except FileNotFoundError:
     print("Error: El archivo 'data/iris_dataset.csv' no fue encontrado.")
 
 # Dividir el DataFrame en características (X) y etiquetas (Y)
-X = iris.drop('target', axis=1)
-Y = iris['target']
+X = iris.drop("target", axis=1)
+Y = iris["target"]
 
 # Iniciar un experimento de MLflow
 with mlflow.start_run():
-	# Dividir los datos en conjuntos de entrenamiento y prueba
-	X_train, X_test, y_train, y_test = train_test_split(
-		X, Y, test_size=0.3, random_state=42
-	)
+    # Dividir los datos en conjuntos de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, Y, test_size=0.3, random_state=42
+    )
 
 # Inicializar y entrenar el modelo
 n_estimators = 20
@@ -41,7 +41,7 @@ y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
 # Guardar el modelo entrenado en un archivo .pkl
-joblib.dump(model, 'model.pkl')
+joblib.dump(model, "model.pkl")
 
 # Registrar el modelo con MLflow
 mlflow.sklearn.log_model(model, "random-forest-model")
@@ -56,10 +56,13 @@ print("Experimento registrado con MLflow.")
 # 1. Generar la matriz de confusión
 cm = confusion_matrix(y_test, y_pred)
 plt.figure(figsize=(8, 6))
-sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-plt.title('Matriz de Confusión')
-plt.xlabel('Predicciones')
-plt.ylabel('Valores Reales')
-plt.savefig('confusion_matrix.png')
+sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+plt.title("Matriz de Confusión")
+plt.xlabel("Predicciones")
+plt.ylabel("Valores Reales")
+plt.savefig("confusion_matrix.png")
 print("Matriz de confusión guardada como 'confusion_matrix.png'")
+cm_path = os.path.abspath("confusion_matrix.png")
+if os.path.exists(cm_path):
+    mlflow.log_artifact(cm_path)
 # --- Fin de la sección de Reporte ---

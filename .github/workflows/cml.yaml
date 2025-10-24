@@ -108,7 +108,8 @@ jobs:
 
       - name: build and Push Docker Image
         run: |
-          docker build -t gcr-io/${{ secrets.GCP_PROJECT_ID }}/mlops-api:latest
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/mlops-api:latest .
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/mlops-api:latest
 
       - name: Deploy to GKE
         run: |
