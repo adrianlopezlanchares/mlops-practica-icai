@@ -40,9 +40,6 @@ y_pred = model.predict(X_test)
 
 accuracy = accuracy_score(y_test, y_pred)
 
-# Guardar el modelo entrenado en un archivo .pkl
-joblib.dump(model, "model.pkl")
-
 # Registrar el modelo con MLflow
 mlflow.sklearn.log_model(model, "random-forest-model")
 
