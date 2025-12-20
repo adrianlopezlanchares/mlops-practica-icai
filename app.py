@@ -1,13 +1,15 @@
 import joblib
 from flask import Flask, request, jsonify
 import numpy as np
+import mlflow.sklearn
+import os
 
-# Cargar el modelo entrenado
-try:
-    model = joblib.load('model.pkl')
-except FileNotFoundError:
-    print("Error: 'model.pkl' no encontrado. Por favor, asegúrate de haber ejecutado el script de entrenamiento.")
-    model = None
+tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
+mlflow.set_tracking_uri(tracking_uri)
+
+# Load the model from MLflow Registry (Production stage)
+model = mlflow.sklearn.load_model("models:/iris-rf/Production")
+
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
