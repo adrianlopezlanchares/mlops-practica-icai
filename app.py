@@ -7,26 +7,30 @@ import os
 tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
 mlflow.set_tracking_uri(tracking_uri)
 
-# Load the model from MLflow Registry (Production stage)
-model = mlflow.sklearn.load_model("models:/iris-rf/Production")
+model = mlflow.sklearn.load_model("random-forest-model")
 
 
 # Inicializar la aplicación Flask
 app = Flask(__name__)
-@app.route('/predict', methods=['POST'])
+
+
+@app.route("/predict", methods=["POST"])
 def predict():
     if model is None:
-        return jsonify({'error': 'Modelo no cargado. Por favor, entrene el modelo primero.'}), 500
+        return jsonify(
+            {"error": "Modelo no cargado. Por favor, entrene el modelo primero."}
+        ), 500
     try:
         # Obtener los datos de la petición en formato JSON
         data = request.get_json(force=True)
-        features = np.array(data['features']).reshape(1, -1)
+        features = np.array(data["features"]).reshape(1, -1)
         # Realizar la predicción
         prediction = model.predict(features)
         # Devolver la predicción en formato JSON
-        return jsonify({'prediction': int(prediction[0])})
+        return jsonify({"prediction": int(prediction[0])})
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({"error": str(e)}), 400
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
