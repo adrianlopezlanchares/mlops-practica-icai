@@ -62,6 +62,7 @@ jobs:
         
       - name: Push model to DVC remote
         run: |
+          dvc remote add origin s3://dvc
           dvc remote modify origin endpointurl https://dagshub.com/adrianlopezlanchares/mlops-practica-icai.s3
           dvc remote modify origin --local access_key_id ${{ secrets.DAGSHUB_API_KEY }}
           dvc remote modify origin --local secret_access_key ${{ secrets.DAGSHUB_API_KEY }}
