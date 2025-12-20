@@ -115,9 +115,16 @@ jobs:
         run: |
           docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/mlops-api/mlops-api:latest .
           docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/mlops-api/mlops-api:latest
-
+      
+      - name: Build and Push Web Docker Image
+        run: |
+          docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/mlops-web/mlops-web:latest -f Dockerfile.web .
+          docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/mlops-web/mlops-web:latest
 
       - name: Deploy to GKE
         run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
+          kubectl apply -f api-deployment.yaml
+          kubectl apply -f api-service.yaml
+          
+          kubectl apply -f web-deployment.yaml
+          kubectl apply -f web-service.yaml
