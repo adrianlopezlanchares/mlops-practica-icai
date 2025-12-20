@@ -14,11 +14,11 @@ spec:
       labels:
         app: mlops-web
     spec:
-    containers:
-    - name: mlops-web
-      image: us-central1-docker.pkg.dev/mlops-practica-icai/mlops-api/mlops-api:latest
-      ports:
-      - containerPort: 8501
-      env:
-      - name: API_URL
-      value: http://mlops-api-service:5000/predict
+      containers:
+      - name: mlops-web
+        image: us-central1-docker.pkg.dev/mlops-practica-icai/mlops-api/mlops-api:latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: API_URL
+        value: http://mlops-api-service:5000/predict
