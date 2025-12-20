@@ -7,7 +7,7 @@ import os
 tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
 mlflow.set_tracking_uri(tracking_uri)
 
-model = mlflow.sklearn.load_model("random-forest-model")
+model = mlflow.sklearn.load_model("models:/iris-rf/Production")
 
 
 # Inicializar la aplicación Flask
