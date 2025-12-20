@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: mlops-api
-        image: gcr.io/mlops-practica-icai/mlops-api:latest
+        image: us-central1-docker.pkg.dev/mlops-practica-icai/mlops-api/mlops-api:latest
         ports:
         - containerPort: 5000
