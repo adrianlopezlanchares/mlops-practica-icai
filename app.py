@@ -1,14 +1,16 @@
 import joblib
 from flask import Flask, request, jsonify
 import numpy as np
-import mlflow.sklearn
+import mlflow
+from mlflow.tracking import MlflowClient
 import os
 
 tracking_uri = os.environ.get("MLFLOW_TRACKING_URI")
 mlflow.set_tracking_uri(tracking_uri)
 
-latest_run = mlflow.search_runs(order_by=["start_time DESC"]).iloc[0]
-model_uri = f"runs:/{latest_run.run_id}/random-forest-model"
+client = MlflowClient(tracking_uri=tracking_uri)
+latest_version_info = client.get_latest_versions("iris-rf")[0]
+model_uri = f"models:/iris-rf/{latest_version_info.version}"
 model = mlflow.sklearn.load_model(model_uri)
 
 
