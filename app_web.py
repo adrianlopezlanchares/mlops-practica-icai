@@ -20,7 +20,7 @@ if st.button("Obtener Predicción"):
     features = [sepal_length, sepal_width, petal_length, petal_width]
     payload = {"features": features}
     # URL de la API de predicción (cambia esta URL si la API no está en esa url)
-    api_url = "http://localhost:5000/predict"
+    api_url = "http://mlops-api-service:5000/predict"
     try:
         # Enviar la petición a la API
         response = requests.post(
