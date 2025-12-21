@@ -1,7 +1,7 @@
 kind: PodMonitoring
-  metadata:
-    name: mlops-api-pod-monitor
-    namespace: default
+metadata:
+  name: mlops-api-pod-monitor
+  namespace: default
 
 spec:
   selector:
