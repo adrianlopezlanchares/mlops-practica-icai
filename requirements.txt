@@ -88,7 +88,7 @@ MarkupSafe==3.0.2
 marshmallow==3.26.1
 matplotlib==3.10.6
 mdurl==0.1.2
-mlflow==2.8.0
+mlflow==2.13.0
 multidict==6.6.4
 mypy_extensions==1.1.0
 networkx==3.5
@@ -106,7 +106,7 @@ prompt_toolkit==3.0.52
 propcache==0.3.2
 protobuf==4.25.8
 psutil==5.9.8
-pyarrow==13.0.0
+pyarrow==14.0.1
 pycparser==2.23
 pydantic==2.11.9
 pydantic_core==2.33.2
