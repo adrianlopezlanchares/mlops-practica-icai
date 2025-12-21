@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 
 # Exponer el puerto en el que se ejecutará la aplicación
-EXPOSE 5000
+EXPOSE 5001
 
 # Comando para ejecutar la aplicación cuando se inicie el contenedor
 CMD ["python", "app.py"]
