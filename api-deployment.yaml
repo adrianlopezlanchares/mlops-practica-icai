@@ -18,7 +18,8 @@ spec:
       - name: mlops-api
         image: us-central1-docker.pkg.dev/mlops-practica-icai/mlops-api/mlops-api:latest
         ports:
-        - containerPort: 5000
+        - name: metrics
+          containerPort: 5000
         env:
         - name: MLFLOW_TRACKING_URI
           value: "https://dagshub.com/adrianlopezlanchares/mlops-practica-icai.mlflow"
