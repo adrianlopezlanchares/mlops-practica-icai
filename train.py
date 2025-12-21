@@ -42,7 +42,7 @@ accuracy = accuracy_score(y_test, y_pred)
 
 # Registrar el modelo con MLflow
 mlflow.sklearn.log_model(
-    model, name="random-forest-model", registered_model_name="iris-rf"
+    model, artifact_path="random-forest-model", registered_model_name="iris-rf"
 )
 
 # Registrar parámetros y métricas
